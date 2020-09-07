@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Navbar from "./components/layouts/Navbar";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Container } from "@material-ui/core";
+import Todos from "./components/todos/Todos";
+import Signin from "./components/auth/Signin";
+import Signup from "./components/auth/Signup";
+import CreateTodo from "./components/todos/CreateTodo";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="app" maxWidth="xl">
+      <BrowserRouter>
+        <Navbar />
+
+        <Switch>
+
+          <Route path="/" exact>
+            <Todos />
+          </Route>
+          <Route exact path="/login" component={Signin}></Route>
+          <Route exact path="/signup" component={Signup}></Route>
+          <Route exact path="/create" component={CreateTodo}></Route>
+        </Switch>
+      </BrowserRouter>
+    </Container>
   );
 }
 
